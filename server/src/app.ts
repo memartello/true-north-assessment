@@ -1,15 +1,27 @@
-import express, { Request, Response } from 'express';
-import { Router } from 'express';
+import express from 'express';
+import { connectToDatabase } from './config/dbConnection';
+import apiRoutes from './routes/api';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+if(!process.env.PORT){
+    process.exit(1);
+}
+
+const PORT: number = parseInt(process.env.PORT as string, 10);
 
 const app = express();
-const router = Router();
+app.use('/',apiRoutes);
 
-router.get('/tasks', (req: Request,res: Response) => {
-    res.status(200).json({message:'Fetched and saved in typescript'})
-});
+try{
+    connectToDatabase();
+}catch(err){
+    console.log(err);
+    process.exit(1);
+}
 
-app.use('/',router);
 
-app.listen(5000, () => {
-    console.log('server listening on port 5000')
-});
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+})

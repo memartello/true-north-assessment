@@ -26,9 +26,25 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - DB_CONN_STRING=mongodb://mongodb:27017/
     build:
       context: ./server
       dockerfile: Dockerfile.dev
     volumes:
       - /home/client/app/node_modules
       - ./server:/home/node/app
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    restart: always
+  mongo-seed:
+    build:
+      context: ./db
+      dockerfile: Dockerfile.dev
+    links:
+      - mongodb
