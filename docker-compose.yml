@@ -1,0 +1,34 @@
+version: '3.0'
+services:
+  client:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - /home/client/app/node_modules
+      - ./client:/home/client/app
+  nginx:
+    restart: always
+    depends_on:
+      - client
+      - api
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - '8080:80'
+  api:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/client/app/node_modules
+      - ./server:/home/node/app
