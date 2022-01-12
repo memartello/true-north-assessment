@@ -16,7 +16,7 @@ const App = () => {
       { loading && <LinearProgress />}
       <TNHeader>
         <TitleText>True north - assesment</TitleText>
-      </TNHeader>
+      </TNHeader> 
       <Container> 
         <TaskPage />
       </Container>

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-
+import { device } from "../constants/device"
 export const TNHeader = styled.div`
   height:100px;
   display:flex;
@@ -16,8 +16,11 @@ export const TitleText = styled.label`
 `
 
 export const Container = styled.div`
-padding:100px;
+padding:25px;
 color: white;
+@media ${device.mobileL} {
+  padding: 100px;
+}
 `
 export const Main = styled.div`
 margin: 0
@@ -32,12 +35,13 @@ export const SubTitle = styled.label`
 
 export const Card = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    height: 20px;
+    min-height: 20px;
     padding: 50px;
     margin-bottom: 1em;
     background-color: white;
     color: black;
     cursor: pointer;
+    max-height: auto;
     &:hover{
         background-color: rgb(53 59 69);
         color:#1fc4db;

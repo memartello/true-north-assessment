@@ -1,21 +1,29 @@
 import React from "react"
 import TaskDetails from "./TaskDetails"
-import {updateTask, getTasks} from '../../../api/taskApi';
+import { updateTask } from '../../../api/taskApi';
 import PubSub from "pubsub-js";
 import { AlertEvent, AlertTypes } from "../../commons/EventAlert";
 
-const TaskList = ({tasks}) => {
-    const updateTask = async (task, index) => {
+const TaskList = ({tasks, refresh}) => {
+    const onCompleteTask = async (task, index) => {
         const response = await updateTask(task);
-        PubSub.publish(AlertEvent,{
-            message: "Task updated succesfully",
-            type: AlertTypes.success
-        });
+        if(response){
+            PubSub.publish(AlertEvent,{
+                message: "Task updated succesfully",
+                type: AlertTypes.success
+            });
+            refresh();
+        }else{
+            PubSub.publish(AlertEvent,{
+                message: "Something went wrong!",
+                type: AlertTypes.danger
+            });
+        }
     }
     return(
         <div>
-            {tasks.map((task, index)=>{
-                return <TaskDetails key={index} {...task} onConfirm={() => updateTask(task, index)} />
+            {tasks && tasks.map((task, index)=>{
+                return <TaskDetails key={index} {...task} onConfirm={() => onCompleteTask(task, index)} />
             })}
         </div>
     )

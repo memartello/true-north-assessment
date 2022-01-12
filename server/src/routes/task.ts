@@ -4,6 +4,6 @@ import * as TaskController from '../controllers/task.controller';
 const router = Router();
 
 router.get('/', TaskController.get)
-router.put('/:taskId', TaskController.update);
+router.post('/complete/:taskId', TaskController.complete);
 
 export default router;

@@ -1,17 +1,53 @@
 [
     {
-        "description": "Task 1",
-        "title": "Kill Voldemort",
+        "title": "Task 1",
+        "description": "Take train to Howarts",
         "completed": false
       },
       {
-        "name": "Task 2",
-        "email": "Learn specto patronus",
+        "title": "Task 2",
+        "description": "Learn specto patronus",
         "completed": false
       },
       {
-        "name": "Task 3",
-        "email": "Learn winwardium lebiosa",
+        "title": "Task 3",
+        "description": "Learn winwardium lebiosa",
+        "completed": false
+      },
+      {
+        "title": "Task 4",
+        "description": "Ride a Broom",
+        "completed": false
+      },
+      {
+        "title": "Task 5",
+        "description": "Take the subject defense against dark arts",
+        "completed": true
+      },
+      {
+        "title": "Task 6",
+        "description": "Fight a Troll",
+        "completed": false
+      },
+      {
+        "title": "Task 7",
+        "description": "Feed fang",
+        "completed": false
+      },
+      {
+        "title": "Task 8",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "completed": false
+      },
+      {
+        "title": "Task 9",
+        "description": "Destroy horocrux",
+        "completed": false
+      },
+      {
+        "title": "Task 10",
+        "description": "Kill Voldemort",
         "completed": false
       }
+      
 ]

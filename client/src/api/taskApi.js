@@ -1,18 +1,21 @@
 import { ax } from '../components/hooks/useAxiosLoader';
-const URL = "" 
 
 export const updateTask = async (task) => {
     try{
-        const result = await ax.put(URL,task);
+        const response = await ax.post(`/api/task/complete/${task._id}`);
+        if(response){
+            return response;
+        }
     }catch(err){
         console.log(err);
     }
 }
 
-export const getTasks = async (filter, setData) => {
+export const getTasks = async () => {
     try{
-        const data = await ax.get(URL);
-        setData(data);
+        // const data = await ax.get(`/api/task&?currentPage=${filter.currentPage}&pageSize=${filter.pageSize}`);
+        return await ax.get(`/api/task`);
+
     }catch(err){
         console.log(err);
     }

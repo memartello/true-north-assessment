@@ -4,10 +4,10 @@ import {Slide, Alert} from "@mui/material";
 
 export const AlertEvent = "Alert";
 export const AlertTypes = {
-    success: "succes",
+    success: "success",
     info: "info",
     warning: "warning",
-    danger: "danger"
+    error: "error"
 }
 
 export const EventAlert = React.forwardRef((props, ref) => {

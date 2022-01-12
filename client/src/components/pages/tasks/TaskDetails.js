@@ -3,6 +3,17 @@ import { Typography , DialogActions, DialogContent, Button, Checkbox} from '@mui
 import { BootstrapDialog, BootstrapDialogTitle } from "../../commons/BoostrapDialog";
 import { Card, TaskInfo } from "../../commons/StyledComponents" ;
 
+const TRIM_DESCRIPTION = 150;
+
+const TaskText = ({title, description, checked}) => {
+    return(
+        <TaskInfo>
+            <span>{`${title} - ${description.length > TRIM_DESCRIPTION ? description.substring(0,TRIM_DESCRIPTION)+"{...}":  description}`} </span>
+            <Checkbox disabled checked={checked} style={{float: 'right'}} />
+        </TaskInfo>
+    )
+}
+
 const TaskDetails = ({description, title, completed, onConfirm}) =>{
     const [open, setOpen] = React.useState(false);
     const handleClickOpen  = () => setOpen(true);
@@ -10,28 +21,24 @@ const TaskDetails = ({description, title, completed, onConfirm}) =>{
     const handleConfirm = () => {onConfirm();setOpen(false);}
     return(
         <Fragment>
-            <Card completed={completed} onClick={handleClickOpen}>
-                <TaskInfo >
-                    {`${title} - ${description}`} 
-                    <Checkbox disabled checked={completed} style={{float: 'right'}} />
-                </TaskInfo>
+            <Card onClick={handleClickOpen}>
+                <TaskText title={title} description={description} checked={completed} />
             </Card>
             <BootstrapDialog
-            onClose={handleClose}
-            aria-labelledby="customized-dialog-title"
-            open={open}
-            >
+                onClose={handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={open}>
             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                 {`${title}`}
             </BootstrapDialogTitle>
-            <DialogContent dividers style={{width:'500px'}}>
+            <DialogContent dividers style={{width:'350px'}}>
                 <Typography gutterBottom>
                 {`${description}`}
                 </Typography>
             </DialogContent>
             <DialogActions>
                 <Button autoFocus onClick={handleConfirm}>
-                Complete
+                    Complete
                 </Button>
             </DialogActions>
             </BootstrapDialog>
